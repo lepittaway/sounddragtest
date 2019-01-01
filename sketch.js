@@ -48,7 +48,7 @@ function noscroll() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
- window.addEventListener('scroll', noscroll);
+ //window.addEventListener('scroll', noscroll);
   
 }
 
@@ -57,7 +57,7 @@ function draw() {
   
   
   /* ---------------- ENVIRONMENT ---------------- */
-  background('green');
+  background('blue');
   canvasRad = windowWidth * 6;
   
   //screen space
