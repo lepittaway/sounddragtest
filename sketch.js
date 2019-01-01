@@ -39,10 +39,16 @@ var mapSize = 100;
 var aD = 10;
 var audioDiam;
 
+function noscroll() {
+  window.scrollTo( 0, 0 );
+}
+
+// add listener to disable scroll
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
- 
+ window.addEventListener('scroll', noscroll);
   
 }
 
