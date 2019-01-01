@@ -43,12 +43,17 @@ function noscroll() {
   window.scrollTo( 0, 0 );
 }
 
+function preventBehavior(e) {
+    e.preventDefault(); 
+}
+
 // add listener to disable scroll
 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
  //window.addEventListener('scroll', noscroll);
+  document.addEventListener("touchmove", preventBehavior, {passive: false});
   
 }
 
@@ -57,7 +62,7 @@ function draw() {
   
   
   /* ---------------- ENVIRONMENT ---------------- */
-  background('blue');
+  background('yellow');
   canvasRad = windowWidth * 6;
   
   //screen space
