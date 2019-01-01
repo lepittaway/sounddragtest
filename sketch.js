@@ -57,7 +57,7 @@ function draw() {
   
   
   /* ---------------- ENVIRONMENT ---------------- */
-  background('blue');
+  background('red');
   canvasRad = windowWidth * 6;
   
   //screen space
