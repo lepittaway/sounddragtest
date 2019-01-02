@@ -47,8 +47,6 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   document.addEventListener("touchmove", preventBehavior, {passive: false});
   
-  audio[1].play();
-  
   /* ---------------- BUTTONS ---------------- */
   playButton = new StartButton(windowWidth/2, 100, 15);
   up = new MoveButton(windowWidth/2, 40, 15);
