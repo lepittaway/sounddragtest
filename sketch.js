@@ -1,7 +1,7 @@
 /* Sounds */
 var audio = []; //loaded audio files
 var interviews = [
-                  55, 55, 'bell',
+                  55, 65, 'bell',
                   45, 45, 'bratton',
                   10, 90, 'bratton'
                  ]; //interview audio info: x, y, name
@@ -67,7 +67,7 @@ function setup() {
 function draw() {
   
   /* ---------------- ENVIRONMENT ---------------- */
-  background('#fdfdfd');
+  background('#000');
   //drawGrid(gx, gy, 1);
   
   offsetX = windowWidth/2; //adjustment to centre
@@ -84,17 +84,18 @@ function draw() {
   audioDiam = map(aD, 0, 100, 0, canvasRad*2);
   drawSounds(); 
   triggerSound(); 
+  console.log(audio[0].getVolume);
   
   /* -------------------- MAP AND HELPERS ------------- */
-  var mapScale = 2;
+  var mapScale = 1.5;
   fill(0);
   textSize(12);
-  text('X = '+ round(xc), windowWidth - (areaW * mapScale), areaH * mapScale + 14); //location on 0 - 100
-  text('Y = '+ round(yc), windowWidth - (areaW*mapScale), areaH * mapScale + 28);//location on 0 - 100
-  drawMap(0, 0, xc, yc, 100, 100, mapScale);
+  //text('X = '+ round(xc), windowWidth - (areaW * mapScale), areaH * mapScale + 14); //location on 0 - 100
+  //text('Y = '+ round(yc), windowWidth - (areaW*mapScale), areaH * mapScale + 28);//location on 0 - 100
+  drawMap(-10, 10, xc, yc, 100, 100, mapScale);
   
-  fill('#0f0f0f');
-  ellipse(windowWidth/2, windowHeight/2, 30, 30);
+  fill('#090909');
+  //ellipse(windowWidth/2, windowHeight/2, 30, 30);
   
   
   
@@ -114,7 +115,7 @@ function Sound(name, x, y, r1, r2, col) {
     stroke(this.col);
     strokeWeight(10);
     ellipse(this.x, this.y, this.r1, this.r1);
-    stroke('lightgrey');
+    stroke('#7F7F7F');
     strokeWeight(1);
     noFill();
     ellipse(this.x, this.y, this.r2, this.r2);
@@ -187,6 +188,8 @@ function triggerSound() {
     }
   }
   
+  
+  
 }
 function drawGrid(gx, gy, spacing){
   
@@ -202,22 +205,22 @@ function drawGrid(gx, gy, spacing){
 function drawMap(x, y, mmeX, mmeY, w, h, scale) {
   //draw map area
   stroke(0);
-  fill('f0f0f0');
+  fill('#191919');
   rectMode(CORNER);
   rect(x + windowWidth - (w * scale), y, w * scale, h * scale);
   
   //sound sound location and playing radius
   for ( var i = 0; i < interviews.length; i += 3 ) {
     fill(0, 0, 255);
-    ellipse(x + windowWidth - areaW*scale + interviews[i]*scale, y + interviews[i + 1]*scale, 5, 5);
-    
+    noStroke();
+    ellipse(x + windowWidth - areaW*scale + interviews[i]*scale, y + interviews[i + 1]*scale, 3, 3);
     noFill();
-    stroke('black');
+    stroke('#7F7F7F');
     ellipse(x + windowWidth - areaW*scale + interviews[i]*scale, y + interviews[i + 1]*scale, aD*scale, aD*scale); 
   }
   
   // draw me!
-  fill(255, 0, 0);
+  fill('#f0f0f0');
   noStroke();
   var scaleW = map(mmeX, 0, areaW, -(w/2 * scale), w/2 * scale);
   var scaleH = map(mmeY, 0, areaH, -(h/2 * scale), h/2 * scale);
