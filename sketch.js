@@ -1,3 +1,9 @@
+/* Location & Adjustments */
+var canvasRad = 30000; //real (screen) area size
+var offsetX, offsetY;
+var areaW = 100; 
+var areaH = 100;
+
 /* Sounds */
 var audio = []; //loaded audio files
 var interviews = [
@@ -10,14 +16,10 @@ var interviewsY = []; //y on 0 - 100 grid
 
 var sounds = []; //sounds objects for display
 var aD = 10;
-var audioDiam; //real (screen) area diameter
+var audioDiam;
 var volFade1, volFade2, volFade3;
 
-/* Location & Adjustments */
-var canvasRad = 30000; //real (screen) area size
-var offsetX, offsetY;
-var areaW = 100; 
-var areaH = 100;
+
 
 /* Navigation Movement */
 var gx, gy; //global movement
@@ -42,10 +44,12 @@ function preload() {
   }
   
 }
+
 function setup() {
   
   createCanvas(windowWidth, windowHeight);
   document.addEventListener("touchmove", preventBehavior, {passive: false});
+  audioDiam = map(aD, 0, 100, 0, canvasRad*2); //real (screen) area diameter
   
   /* ---------------- BUTTONS ---------------- */
   playButton = new StartButton(windowWidth/2, 100, 15);
@@ -56,7 +60,7 @@ function setup() {
   
   /* ---------------- SOUND ---------------- */
   for (var i = 0; i < interviews.length; i += 3) {
-    sounds.push(new Sound(interviews[i + 2], interviews[i], interviews[i + 1], 80, 300, 'red'));
+    sounds.push(new Sound(interviews[i + 2], interviews[i], interviews[i + 1], 80, audioDiam, 'red'));
   }
   for (var i = 0; i < interviews.length; i += 3) {
     interviewsX.push(interviews[i]);
@@ -81,10 +85,10 @@ function draw() {
   gy = map(yc, 0, areaH, -canvasRad, canvasRad);
   
   /* -------------------- SOUNDS ---------------- */
-  audioDiam = map(aD, 0, 100, 0, canvasRad*2);
+  
   drawSounds(); 
   triggerSound(); 
-  console.log(audio[0].getVolume);
+  //console.log(audio[0].getVolume);
   
   /* -------------------- MAP AND HELPERS ------------- */
   var mapScale = 1.5;
@@ -185,6 +189,10 @@ function triggerSound() {
     }
     if ( sd12 < aD/2 ) {
       audio[i].setVolume(volFade3); 
+    }
+    if ( meX > interviewsX[i] - aD/2 && meX < interviewsX[i] + aD/2  ) {
+      var panning = map(meX, interviewsX[i] - aD/2, interviewsX[i] + aD/2, 1.0, -1.0);
+      audio[i].pan(panning);  
     }
   }
   
