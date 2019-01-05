@@ -9,7 +9,9 @@ var audio = []; //loaded audio files
 var interviews = [
                   55, 65, 'bell',
                   45, 45, 'bratton',
-                  10, 90, 'bratton'
+                  10, 90, 'bratton',
+                  80, 25, 'bratton',
+                  80, 55, 'bratton',
                  ]; //interview audio info: x, y, name
 var interviewsX = []; //x on 0 - 100 grid
 var interviewsY = []; //y on 0 - 100 grid
