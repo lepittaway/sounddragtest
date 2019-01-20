@@ -192,10 +192,10 @@ function triggerSound() {
     if ( sd12 < aD/2 ) {
       audio[i].setVolume(volFade3); 
     }
-    if ( meX > interviewsX[i] - aD/2 && meX < interviewsX[i] + aD/2  ) {
+    /*if ( meX > interviewsX[i] - aD/2 && meX < interviewsX[i] + aD/2  ) {
       var panning = map(meX, interviewsX[i] - aD/2, interviewsX[i] + aD/2, 1.0, -1.0);
       audio[i].pan(panning);  
-    }
+    }*/
   }
   
   
@@ -221,7 +221,7 @@ function drawMap(x, y, mmeX, mmeY, w, h, scale) {
   
   //sound sound location and playing radius
   for ( var i = 0; i < interviews.length; i += 3 ) {
-    fill(0, 0, 255);
+    fill(255, 0, 0);
     noStroke();
     ellipse(x + windowWidth - areaW*scale + interviews[i]*scale, y + interviews[i + 1]*scale, 3, 3);
     noFill();
