@@ -101,8 +101,8 @@ function draw() {
   drawMap(-10, 10, xc, yc, 100, 100, mapScale);
   
   fill('#090909');
-  playButton.display();
-  playButton.x = windowWidth/2;
+  //playButton.display();
+  //playButton.x = windowWidth/2;
   //ellipse(windowWidth/2, windowHeight/2, 30, 30);
   
   
@@ -200,8 +200,6 @@ function triggerSound() {
     }*/
   }
   
-  
-  
 }
 function drawGrid(gx, gy, spacing){
   
@@ -223,7 +221,7 @@ function drawMap(x, y, mmeX, mmeY, w, h, scale) {
   
   //sound sound location and playing radius
   for ( var i = 0; i < interviews.length; i += 3 ) {
-    fill(255, 0, 0);
+    fill(0, 0, 255);
     noStroke();
     ellipse(x + windowWidth - areaW*scale + interviews[i]*scale, y + interviews[i + 1]*scale, 3, 3);
     noFill();
