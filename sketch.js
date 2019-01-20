@@ -29,11 +29,6 @@ var meY = areaH/2; //start x
 var meX = areaW/2; //start y
 var disty = []; //disatnces from me to sound
 
-/* Buttons */
-var up, down, left, right; //buttons
-var navSpeed = 0.05;
-var playButton;
-
 function preventBehavior(e) {
   e.preventDefault(); 
 } // stop drag behaviour on mobile
@@ -52,13 +47,6 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   document.addEventListener("touchmove", preventBehavior, {passive: false});
   audioDiam = map(aD, 0, 100, 0, canvasRad*2); //real (screen) area diameter
-  
-  /* ---------------- BUTTONS ---------------- */
-  playButton = new StartButton(windowWidth/2, 100, 15);
-  up = new MoveButton(windowWidth/2, 40, 15);
-  down = new MoveButton(windowWidth/2, windowHeight - 40, 15);
-  left = new MoveButton(40, windowHeight/2, 15);
-  right = new MoveButton(windowWidth - 40, windowHeight/2, 15);
   
   /* ---------------- SOUND ---------------- */
   for (var i = 0; i < interviews.length; i += 3) {
@@ -237,42 +225,6 @@ function drawMap(x, y, mmeX, mmeY, w, h, scale) {
   ellipse(x + windowWidth - (w/2 * scale) + scaleW, y + (w/2 * scale) + scaleH, 5, 5);   
 }
 
-function drawNavButtons(){
-  up.display();
-  up.x = windowWidth/2;
-  
-  down.display();
-  down.x = windowWidth/2;
-  down.y = windowHeight - 40;
-  
-  left.display();
-  left.y = windowHeight/2;
-  
-  right.display();
-  right.y = windowHeight/2;
-  right.x = windowWidth - 40;
-  
-  
-  
-  if (mouseIsPressed) {
-    let d1 = dist(mouseX, mouseY, up.x, up.y); 
-    if (d1 < up.r) {
-      meY -= navSpeed;
-    }
-    let d2 = dist(mouseX, mouseY, down.x, down.y); 
-    if (d2 < down.r) {
-      meY += navSpeed;
-    }
-    let d3 = dist(mouseX, mouseY, left.x, left.y); 
-    if (d3 < left.r) {
-      meX -= navSpeed;
-    }
-    let d4 = dist(mouseX, mouseY, right.x, right.y); 
-    if (d4 < right.r) {
-      meX += navSpeed;
-    }
-  }
-}
 function StartButton(x, y, radius) {
   
   this.x = x;
@@ -299,31 +251,6 @@ function StartButton(x, y, radius) {
   
   this.released = function() {
     this.col = color ('#red');
-  }
-}
-function MoveButton(x, y, radius) {
-  
-  this.x = x;
-  this.y = y;
-  this.r = radius;
-  this.col = color('#0f0f0f');
-  
-  this.display = function() {
-    noStroke();
-    fill(this.col);
-    rectMode(RADIUS);
-    rect(this.x, this.y, this.r, this.r);
-  }
-  
-  this.clicked = function() {
-    let d = dist(mouseX, mouseY, this.x, this.y); 
-    if (d < this.r) {
-      this.col = color (0, 0, 255);
-    }
-  }
-  
-  this.released = function() {
-    this.col = color ('#0f0f0f');
   }
 }
 
