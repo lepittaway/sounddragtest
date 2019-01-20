@@ -101,6 +101,8 @@ function draw() {
   drawMap(-10, 10, xc, yc, 100, 100, mapScale);
   
   fill('#090909');
+  playButton.display();
+  playButton.x = windowWidth/2;
   //ellipse(windowWidth/2, windowHeight/2, 30, 30);
   
   
@@ -278,7 +280,7 @@ function StartButton(x, y, radius) {
   this.x = x;
   this.y = y;
   this.r = radius;
-  this.col = color('#0f0f0f');
+  this.col = color('red');
   
   this.display = function() {
     noStroke();
@@ -298,7 +300,7 @@ function StartButton(x, y, radius) {
   }
   
   this.released = function() {
-    this.col = color ('#0f0f0f');
+    this.col = color ('#red');
   }
 }
 function MoveButton(x, y, radius) {
